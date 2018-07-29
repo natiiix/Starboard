@@ -1,0 +1,20 @@
+{
+  "name": "starboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "start index.html",
+    "build": "webpack"
+  },
+  "author": "natiiix",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/typescript": "^2.0.0",
+    "ts-loader": "^4.4.2",
+    "tslint": "^5.11.0",
+    "typescript": "^2.9.2",
+    "webpack": "^4.16.2",
+    "webpack-cli": "^3.1.0"
+  }
+}

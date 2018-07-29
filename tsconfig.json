@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "charset": "utf8",
+        "forceConsistentCasingInFileNames": true,
+        "module": "esnext",
+        "newLine": "CRLF",
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "pretty": true,
+        "removeComments": true,
+        "sourceMap": true,
+        // "strict": true,
+        // "strictFunctionTypes": true,
+        // "strictNullChecks": true,
+        // "strictPropertyInitialization": true,
+        "target": "esnext",
+        "traceResolution": true,
+        "watch": true
+    }
+}
