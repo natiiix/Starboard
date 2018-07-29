@@ -5,9 +5,6 @@ import { Player } from "./Player";
 import { GameSize } from "./Size";
 import { Vector } from "./Vector";
 
-window.addEventListener("load", () => WRAPPER.adjustCanvasSize());
-window.addEventListener("resize", () => WRAPPER.adjustCanvasSize());
-
 const keyStates: { [id: string]: boolean } = {};
 
 const player = new Player(GAME_SIZE.half as GamePoint, PLAYER_SIZE, "#FF0000", true, true, true);

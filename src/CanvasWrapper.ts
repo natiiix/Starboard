@@ -7,6 +7,9 @@ export class CanvasWrapper {
 
     public constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
+
+        window.addEventListener("load", () => this.adjustCanvasSize());
+        window.addEventListener("resize", () => this.adjustCanvasSize());
     }
 
     public get width(): number {
@@ -33,11 +36,6 @@ export class CanvasWrapper {
         return this.height / GAME_SIZE.height;
     }
 
-    public adjustCanvasSize(): void {
-        this.canvas.width = this.canvas.offsetWidth;
-        this.canvas.height = this.canvas.offsetHeight;
-    }
-
     public fillRect(rect: ScreenRectangle | GameRectangle, style: string): void {
         if (rect instanceof GameRectangle) {
             return this.fillRect(rect.toScreen(), style);
@@ -45,5 +43,10 @@ export class CanvasWrapper {
 
         CONTEXT.fillStyle = style;
         CONTEXT.fillRect(rect.x, rect.y, rect.width, rect.height);
+    }
+
+    private adjustCanvasSize(): void {
+        this.canvas.width = this.canvas.offsetWidth;
+        this.canvas.height = this.canvas.offsetHeight;
     }
 }
