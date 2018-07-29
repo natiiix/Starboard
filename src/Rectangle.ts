@@ -31,8 +31,8 @@ export abstract class Rectangle {
 }
 
 export class ScreenRectangle extends Rectangle {
-    public location: ScreenPoint = undefined;
-    public size: ScreenSize = undefined;
+    public location: ScreenPoint;
+    public size: ScreenSize;
 
     public constructor(location: ScreenPoint, size: ScreenSize) {
         super(location, size);
