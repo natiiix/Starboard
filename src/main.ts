@@ -56,6 +56,11 @@ let lastFrame = 0;
 let fps = "";
 
 function tick(timestamp: number): void {
+    if (WORLD === undefined) {
+        window.requestAnimationFrame(tick);
+        return;
+    }
+
     if (lastFrame !== 0) {
         const delta = (timestamp - lastFrame) / 1000;
         fps = Math.round(1 / delta).toString();
