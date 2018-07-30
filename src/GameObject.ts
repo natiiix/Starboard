@@ -2,8 +2,7 @@ import { GamePoint } from "./Point";
 import { GameSize } from "./Size";
 import { GameRectangle, gameRectAroundPoint } from "./Rectangle";
 import { Vector } from "./Vector";
-import { WRAPPER, GRAVITY } from "./environment";
-import { objects } from "./main";
+import { WRAPPER, GRAVITY, WORLD } from "./environment";
 import { CollisionInfo } from "./CollisionInfo";
 
 export class GameObject {
@@ -48,7 +47,7 @@ export class GameObject {
         if (this.handleCollisions) {
             const newLocation = this.location.add(vector) as GamePoint;
             const newRect = gameRectAroundPoint(newLocation, this.size);
-            const intersections = objects.filter(obj => obj !== this && obj.solid).map(obj => newRect.collisionInfoWith(obj.rect)).filter(col => col.isIntersection);
+            const intersections = WORLD.objects.filter(obj => obj !== this && obj.solid).map(obj => newRect.collisionInfoWith(obj.rect)).filter(col => col.isIntersection);
 
             if (intersections.length) {
                 this.location = this.location.add(CollisionInfo.combine(intersections).adjust(vector)) as GamePoint;
@@ -65,7 +64,7 @@ export class GameObject {
         }
 
         if (this.handleCollisions) {
-            const collisions = objects.filter(obj => obj !== this && obj.solid).map(obj => this.rect.collisionInfoWith(obj.rect)).filter(col => col.isCollision);
+            const collisions = WORLD.objects.filter(obj => obj !== this && obj.solid).map(obj => this.rect.collisionInfoWith(obj.rect)).filter(col => col.isCollision);
 
             if (collisions.length) {
                 const combined = CollisionInfo.combine(collisions);

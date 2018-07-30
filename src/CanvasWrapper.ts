@@ -1,4 +1,4 @@
-import { GAME_SIZE, CONTEXT } from "./environment";
+import { VIEW_SIZE, CONTEXT } from "./environment";
 import { ScreenSize } from "./Size";
 import { ScreenRectangle, GameRectangle } from "./Rectangle";
 
@@ -29,11 +29,11 @@ export class CanvasWrapper {
     }
 
     public get xScale(): number {
-        return this.width / GAME_SIZE.width;
+        return this.width / VIEW_SIZE.width;
     }
 
     public get yScale(): number {
-        return this.height / GAME_SIZE.height;
+        return this.height / VIEW_SIZE.height;
     }
 
     public fillRect(rect: ScreenRectangle | GameRectangle, style: string): void {
