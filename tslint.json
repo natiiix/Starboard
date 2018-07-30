@@ -85,10 +85,6 @@
         "no-reference": true,
         "no-string-throw": true,
         "no-unused-expression": true,
-        "no-unused-variable": [
-            true,
-            "check-parameters"
-        ],
         "no-var-keyword": true,
         "object-literal-shorthand": true,
         "one-line": [
