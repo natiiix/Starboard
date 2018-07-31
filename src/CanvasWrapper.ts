@@ -45,6 +45,10 @@ export class CanvasWrapper {
         CONTEXT.fillRect(rect.x, rect.y, rect.width, rect.height);
     }
 
+    public clear(style: string): void {
+        this.fillRect(this.rect, style);
+    }
+
     private adjustCanvasSize(): void {
         this.canvas.width = this.canvas.offsetWidth;
         this.canvas.height = this.canvas.offsetHeight;

@@ -34,13 +34,11 @@ document.addEventListener("keyup", e => {
 // });
 
 function redraw(): void {
-    const canvasRect = WRAPPER.rect;
-
-    WRAPPER.fillRect(canvasRect, "#AAFFCC");
-    WORLD.objects.forEach(obj => obj.render());
-    WORLD.player.render();
+    WORLD.render();
 
     if (showDebugInfo) {
+        const canvasRect = WRAPPER.rect;
+
         CONTEXT.textAlign = "left";
         CONTEXT.textBaseline = "top";
         CONTEXT.fillStyle = "#FFFF44";

@@ -2,7 +2,7 @@ import { GameObject } from "./GameObject";
 import { GameSize } from "./Size";
 import { GameRectangle, gameRectAroundPoint } from "./Rectangle";
 import { Player } from "./Player";
-import { VIEW_SIZE } from "./environment";
+import { VIEW_SIZE, WRAPPER } from "./environment";
 import { GamePoint } from "./Point";
 import * as Validator from "./validator/Validator";
 import { WORLD_SCHEMA } from "./schemas/WorldSchema";
@@ -25,6 +25,12 @@ export class World {
 
     public get viewRect(): GameRectangle {
         return gameRectAroundPoint(this.player.rect.center, VIEW_SIZE);
+    }
+
+    public render(): void {
+        WRAPPER.clear("#AAFFCC");
+        this.objects.forEach(obj => obj.render());
+        this.player.render();
     }
 
     public static fromString(data: string): World {
