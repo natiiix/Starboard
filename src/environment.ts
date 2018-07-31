@@ -32,7 +32,7 @@ export const VIEW_SIZE = new GameSize(16 / 9, 1);
 
 export let WORLD: World = undefined;
 
-fetch("worlds/world0.sb").then(resp => {
+fetch("worlds/world0.json").then(resp => {
     if (resp.status === 200) {
         resp.text().then(text => {
             WORLD = World.fromString(text);
