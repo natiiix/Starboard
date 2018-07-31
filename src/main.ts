@@ -2,13 +2,26 @@ import { WRAPPER, CONTEXT, WORLD } from "./environment";
 import { Vector } from "./Vector";
 
 const keyStates: { [id: string]: boolean } = {};
+let showDebugInfo = false;
 
 document.addEventListener("keydown", e => {
-    if (!keyStates[e.key] && e.key === " ") {
-        WORLD.player.movement.y = 0.5;
-    }
+    if (!keyStates[e.key]) {
+        switch (e.key) {
+            case " ":
+                WORLD.player.movement.y = 0.5;
+                break;
 
-    keyStates[e.key] = true;
+            case "F1":
+                e.preventDefault();
+                showDebugInfo = !showDebugInfo;
+                break;
+
+            default:
+                break;
+        }
+
+        keyStates[e.key] = true;
+    }
 });
 
 document.addEventListener("keyup", e => {
@@ -27,25 +40,30 @@ function redraw(): void {
     WORLD.objects.forEach(obj => obj.render());
     WORLD.player.render();
 
-    const fontHeightFPS = canvasRect.height / 20;
-    CONTEXT.font = generateFont(fontHeightFPS);
-    CONTEXT.textAlign = "left";
-    CONTEXT.textBaseline = "top";
+    if (showDebugInfo) {
+        CONTEXT.textAlign = "left";
+        CONTEXT.textBaseline = "top";
+        CONTEXT.fillStyle = "#FFFF44";
 
-    CONTEXT.shadowColor = "#000000";
-    CONTEXT.shadowBlur = canvasRect.height / 400;
+        CONTEXT.shadowColor = "#000000";
+        CONTEXT.shadowBlur = canvasRect.height / 400;
 
-    CONTEXT.fillStyle = "#FFFF44";
-    CONTEXT.fillText(`FPS:${fps}`, canvasRect.x, canvasRect.y);
+        const xOffset = canvasRect.width / 200;
 
-    const fontHeightCoordinates = canvasRect.height / 30;
-    CONTEXT.font = generateFont(fontHeightCoordinates);
+        const fontHeightFPS = canvasRect.height / 20;
+        CONTEXT.font = generateFont(fontHeightFPS);
 
-    const playerLocation = WORLD.player.rect.center;
-    CONTEXT.fillText(`X:${playerLocation.x.toFixed(3)}`, canvasRect.x, canvasRect.y + fontHeightFPS);
-    CONTEXT.fillText(`Y:${playerLocation.y.toFixed(3)}`, canvasRect.x, canvasRect.y + fontHeightFPS + fontHeightCoordinates);
+        CONTEXT.fillText(`FPS:${fps}`, canvasRect.x + xOffset, canvasRect.y);
 
-    CONTEXT.shadowBlur = 0;
+        const fontHeightCoordinates = canvasRect.height / 30;
+        CONTEXT.font = generateFont(fontHeightCoordinates);
+
+        const playerLocation = WORLD.player.rect.center;
+        CONTEXT.fillText(`X:${playerLocation.x.toFixed(3)}`, canvasRect.x + xOffset, canvasRect.y + fontHeightFPS);
+        CONTEXT.fillText(`Y:${playerLocation.y.toFixed(3)}`, canvasRect.x + xOffset, canvasRect.y + fontHeightFPS + fontHeightCoordinates);
+
+        CONTEXT.shadowBlur = 0;
+    }
 }
 
 function generateFont(size: number): string {
